@@ -1,0 +1,42 @@
+<body>
+<style>
+tr.Waarschuwing{
+  color: green;
+}
+tr.Kritisch{
+  color: orange;
+}
+tr.Verlopen{
+  color: red;
+
+}
+</style>
+
+	<table border=1>
+	  <tr>
+	    <th>Applicatie</th>
+	    <th>Naam</th>
+	    <th>Type</th>
+	    <th>Einddatum</th>
+	    <th>Dagen over</th>
+	  </tr>
+[% FOR app IN payload.keys.sort %]
+	  [% FOR key IN payload.$app.keys.sort %]
+	    <tr class='[% payload.$app.$key.Status %]'>
+	      <td>[% app %]</td> 
+	      <td>[% key %]</td> 
+	      <td>[% payload.$app.$key.type %]</td>
+	      <td>[% payload.$app.$key.endDateTime %]</td>
+	      <td>[% payload.$app.$key.Diff %]</td>
+	    </tr>
+	  [% END %]
+[% END %]
+	  </table>
+	  <table border="1">
+	    <tr>                     <td>Normaal</td></tr>
+	    <tr class="Waarschuwing"><td>Waarschuwing.</td></tr>
+	    <tr class="Kritisch">    <td>Verloopt binnenkort.</td></tr>
+	    <tr class="Verlopen">    <td>Is verlopen.</td></tr>
+	  </table>
+</body>
+</html>
