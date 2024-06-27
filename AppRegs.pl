@@ -8,7 +8,7 @@ use Data::Dumper;
 use JSON;
 use DateTime;
 use Template;
-#use MIME::Lite;
+use MIME::Lite;
 use Data::GUID;
 use FindBin;
 use Config::Simple;
@@ -147,7 +147,7 @@ if ($Report){
   );
   my $mail_body;
   $tt->process('mail.tt', \%data, \$mail_body) or die $tt->error(), "\n";
-  print  $mail_body;  
+  #print  $mail_body;  
   my $msg = MIME::Lite->new(
     To     => "ict-service\@atlascollege.nl",
     From   => "smtp.kali\@atlascollege.nl",
